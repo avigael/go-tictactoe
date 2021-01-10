@@ -18,10 +18,8 @@ func main() {
 
         // swaps between player 1 and 2
         switch player {
-        case 2:
-            player = 1
-        default:
-            player = 2
+            case 2: player = 1
+            default: player = 2
         }
 
         fmt.Printf("%s  pick a position: ", icons[player-1])
