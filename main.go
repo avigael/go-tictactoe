@@ -17,9 +17,10 @@ func main() {
         display(game, placeholder, icons)
 
         // swaps between player 1 and 2
-        if player == 2 {
+        switch player {
+        case 2:
             player = 1
-        } else {
+        default:
             player = 2
         }
 
@@ -43,7 +44,8 @@ func main() {
         // reset game if a tie or a winner
         if loops == 9 || winner != 0 {
             display(game, placeholder, icons)
-            fmt.Println("+ Game Reset +\n")
+            fmt.Println("+ Game Reset +")
+            fmt.Println("")
             loops = 0
             game = [9]int{0, 0, 0, 0, 0, 0, 0, 0, 0}
         }
@@ -58,8 +60,10 @@ func startscreen() {
     fmt.Println("- The numbers on screen")
     fmt.Println("  correspond to the")
     fmt.Println("  position your piece")
-    fmt.Println("  will be placed.\n")
-    fmt.Println("- Enter 9 to Quit.\n")
+    fmt.Println("  will be placed.")
+    fmt.Println("")
+    fmt.Println("- Enter 9 to Quit.")
+    fmt.Println("")
 }
 
 // displays the game
@@ -67,10 +71,8 @@ func display(game [9]int, placeholder [9]string, icons [2]string) {
     for i, v := range game {
         if v == 0 {
             fmt.Print(placeholder[i])
-        } else if v == 1 {
-            fmt.Print(icons[0])
-        } else if v == 2 {
-            fmt.Print(icons[1])
+        } else {
+            fmt.Print(icons[v-1])
         }
         if i%3 == 2 {
             fmt.Print("\n")
@@ -102,11 +104,7 @@ func play(player int, game [9]int, pos int) [9]int {
         pos = input()
         game = play(player, game, pos)
     } else {
-        if player == 1 {
-            game[pos] = 1
-        } else if player == 2 {
-            game[pos] = 2
-        }
+        game[pos] = player
     }
     return game
 }
