@@ -10,6 +10,7 @@ func main() {
     icons := [2]string{"❌", "⭕"}
     loops := 0
     player := 2
+    clear := "\033[H\033[2J"
     startscreen()
 
     // game loop
@@ -24,6 +25,7 @@ func main() {
 
         fmt.Printf("%s  pick a position: ", icons[player-1])
         pos := input()
+        fmt.Print(clear)
 
         // quits program
         if pos == 9 {
@@ -35,8 +37,10 @@ func main() {
 
         if winner != 0 {
             fmt.Printf("%s  is the winner!\n", icons[winner-1])
+            fmt.Println("")
         } else if loops == 9 {
             fmt.Println("!NO WINNER TIED GAME!")
+            fmt.Println("")
         }
 
         // reset game if a tie or a winner
